@@ -6,7 +6,6 @@ libvorbis-dev
 libogg-dev
 sqlite-autoconf-dev
 curl-dev
-jsoncpp-dev
 gmp-dev
 mesa-dev
 pkgconfig(x11)

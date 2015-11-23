@@ -4,7 +4,7 @@
 #
 Name     : minetest
 Version  : 0.4.13
-Release  : 6
+Release  : 8
 URL      : https://github.com/minetest/minetest/archive/0.4.13.tar.gz
 Source0  : https://github.com/minetest/minetest/archive/0.4.13.tar.gz
 Summary  : No detailed summary available
@@ -65,7 +65,7 @@ doc components for the minetest package.
 %build
 mkdir clr-build
 pushd clr-build
-cmake .. -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS:BOOL=ON -DLIB_INSTALL_DIR:PATH=%{_libdir} -DBUILD_CLIENT=1 -DBUILD_SERVER=1 -DENABLE_FREETYPE=1
+cmake .. -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS:BOOL=ON -DLIB_INSTALL_DIR:PATH=%{_libdir} -DBUILD_CLIENT=1 -DBUILD_SERVER=1 -DENABLE_FREETYPE=1 -DBUILD_SHARED_LIBS=0
 make V=1  %{?_smp_mflags}
 popd
 
