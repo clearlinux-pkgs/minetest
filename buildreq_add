@@ -1,0 +1,16 @@
+# This file contains additional build requirements that did not get
+# picked up automatically. One name per line, no whitespace.
+openal-soft-dev
+irrlicht-dev
+libvorbis-dev
+libogg-dev
+sqlite-autoconf-dev
+curl-dev
+jsoncpp-dev
+gmp-dev
+mesa-dev
+pkgconfig(x11)
+libjpeg-turbo-dev
+bzip2-dev
+pkgconfig(libpng)
+zlib-dev
