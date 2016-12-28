@@ -4,7 +4,7 @@
 #
 Name     : minetest
 Version  : 0.4.14
-Release  : 12
+Release  : 13
 URL      : https://github.com/minetest/minetest/archive/0.4.14.tar.gz
 Source0  : https://github.com/minetest/minetest/archive/0.4.14.tar.gz
 Summary  : No detailed summary available
