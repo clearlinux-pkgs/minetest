@@ -4,7 +4,7 @@
 #
 Name     : minetest
 Version  : 0.4.16
-Release  : 19
+Release  : 20
 URL      : https://github.com/minetest/minetest/archive/0.4.16.tar.gz
 Source0  : https://github.com/minetest/minetest/archive/0.4.16.tar.gz
 Summary  : No detailed summary available
