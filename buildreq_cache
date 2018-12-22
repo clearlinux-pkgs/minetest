@@ -1,4 +1,5 @@
 0.4.17.1
-ncurses-dev
 doxygen
 leveldb
+libspatialindex-dev
+ncurses-dev

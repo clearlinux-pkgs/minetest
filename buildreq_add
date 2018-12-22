@@ -13,3 +13,4 @@ libjpeg-turbo-dev
 bzip2-dev
 pkgconfig(libpng)
 zlib-dev
+LuaJIT-dev

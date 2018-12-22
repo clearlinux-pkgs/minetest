@@ -4,16 +4,17 @@
 #
 Name     : minetest
 Version  : 0.4.17.1
-Release  : 21
+Release  : 22
 URL      : https://github.com/minetest/minetest/archive/0.4.17.1.tar.gz
 Source0  : https://github.com/minetest/minetest/archive/0.4.17.1.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : CC-BY-SA-3.0 LGPL-2.1+ MIT
-Requires: minetest-bin
-Requires: minetest-data
-Requires: minetest-license
-Requires: minetest-man
+Requires: minetest-bin = %{version}-%{release}
+Requires: minetest-data = %{version}-%{release}
+Requires: minetest-license = %{version}-%{release}
+Requires: minetest-man = %{version}-%{release}
+BuildRequires : LuaJIT-dev
 BuildRequires : buildreq-cmake
 BuildRequires : bzip2-dev
 BuildRequires : curl-dev
@@ -21,12 +22,17 @@ BuildRequires : doxygen
 BuildRequires : gmp-dev
 BuildRequires : irrlicht-dev
 BuildRequires : leveldb
+BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
 BuildRequires : libjpeg-turbo-dev
 BuildRequires : libogg-dev
+BuildRequires : libpng-dev
+BuildRequires : libspatialindex-dev
 BuildRequires : libvorbis-dev
+BuildRequires : lua-dev
 BuildRequires : mesa-dev
 BuildRequires : ncurses-dev
 BuildRequires : openal-soft-dev
+BuildRequires : pkgconfig(freetype2)
 BuildRequires : pkgconfig(libpng)
 BuildRequires : pkgconfig(x11)
 BuildRequires : sqlite-autoconf-dev
@@ -41,9 +47,9 @@ and contributors (see source file comments and the version control log)
 %package bin
 Summary: bin components for the minetest package.
 Group: Binaries
-Requires: minetest-data
-Requires: minetest-license
-Requires: minetest-man
+Requires: minetest-data = %{version}-%{release}
+Requires: minetest-license = %{version}-%{release}
+Requires: minetest-man = %{version}-%{release}
 
 %description bin
 bin components for the minetest package.
@@ -60,7 +66,7 @@ data components for the minetest package.
 %package doc
 Summary: doc components for the minetest package.
 Group: Documentation
-Requires: minetest-man
+Requires: minetest-man = %{version}-%{release}
 
 %description doc
 doc components for the minetest package.
@@ -90,18 +96,18 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1533054173
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1545508037
+mkdir -p clr-build
 pushd clr-build
 %cmake .. -DBUILD_CLIENT=1 -DBUILD_SERVER=1 -DENABLE_FREETYPE=1 -DBUILD_SHARED_LIBS=0
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1533054173
+export SOURCE_DATE_EPOCH=1545508037
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/minetest
-cp lib/lua/COPYRIGHT %{buildroot}/usr/share/doc/minetest/lib_lua_COPYRIGHT
+mkdir -p %{buildroot}/usr/share/package-licenses/minetest
+cp lib/lua/COPYRIGHT %{buildroot}/usr/share/package-licenses/minetest/lib_lua_COPYRIGHT
 pushd clr-build
 %make_install
 popd
@@ -396,10 +402,10 @@ popd
 %doc /usr/share/doc/minetest/*
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/minetest/lib_lua_COPYRIGHT
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/minetest/lib_lua_COPYRIGHT
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/man6/minetest.6
 /usr/share/man/man6/minetestserver.6

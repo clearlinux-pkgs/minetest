@@ -2,14 +2,16 @@ libIrrlicht.so.1.8
 libX11.so.6
 libc.so.6
 libcurl.so.4
-libdl.so.2
+libfreetype.so.6
 libgcc_s.so.1
 libgmp.so.10
+libluajit-5.1.so.2
 libm.so.6
 libncursesw.so.6
 libopenal.so.1
 libpthread.so.0
 librt.so.1
+libspatialindex.so.4
 libsqlite3.so.0
 libstdc++.so.6
 libtinfow.so.6
