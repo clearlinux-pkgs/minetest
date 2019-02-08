@@ -4,7 +4,7 @@
 #
 Name     : minetest
 Version  : 0.4.17.3
-Release  : 24
+Release  : 25
 URL      : https://github.com/minetest/minetest/archive/0.4.17.3.tar.gz
 Source0  : https://github.com/minetest/minetest/archive/0.4.17.3.tar.gz
 Summary  : No detailed summary available
@@ -21,7 +21,6 @@ BuildRequires : curl-dev
 BuildRequires : doxygen
 BuildRequires : gmp-dev
 BuildRequires : irrlicht-dev
-BuildRequires : leveldb
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
 BuildRequires : libjpeg-turbo-dev
 BuildRequires : libogg-dev
@@ -96,15 +95,18 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1545523895
+export SOURCE_DATE_EPOCH=1549603155
 mkdir -p clr-build
 pushd clr-build
-%cmake .. -DBUILD_CLIENT=1 -DBUILD_SERVER=1 -DENABLE_FREETYPE=1 -DBUILD_SHARED_LIBS=0
-make  %{?_smp_mflags}
+%cmake .. -DBUILD_CLIENT=1 \
+-DBUILD_SERVER=1 \
+-DENABLE_FREETYPE=1 \
+-DBUILD_SHARED_LIBS=0
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1545523895
+export SOURCE_DATE_EPOCH=1549603155
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/minetest
 cp lib/lua/COPYRIGHT %{buildroot}/usr/share/package-licenses/minetest/lib_lua_COPYRIGHT
