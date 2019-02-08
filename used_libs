@@ -16,6 +16,7 @@ libncursesw.so.6
 libogg.so.0
 libopenal.so.1
 libpng16.so.16
+libpq.so.5
 libpthread.so.0
 librt.so.1
 libspatialindex.so.4

@@ -4,7 +4,7 @@
 #
 Name     : minetest
 Version  : 0.4.17.3
-Release  : 25
+Release  : 26
 URL      : https://github.com/minetest/minetest/archive/0.4.17.3.tar.gz
 Source0  : https://github.com/minetest/minetest/archive/0.4.17.3.tar.gz
 Summary  : No detailed summary available
@@ -34,6 +34,7 @@ BuildRequires : openal-soft-dev
 BuildRequires : pkgconfig(freetype2)
 BuildRequires : pkgconfig(libpng)
 BuildRequires : pkgconfig(x11)
+BuildRequires : postgresql-dev
 BuildRequires : sqlite-autoconf-dev
 BuildRequires : zlib-dev
 
@@ -95,7 +96,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549603155
+export SOURCE_DATE_EPOCH=1549646854
 mkdir -p clr-build
 pushd clr-build
 %cmake .. -DBUILD_CLIENT=1 \
@@ -106,7 +107,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549603155
+export SOURCE_DATE_EPOCH=1549646854
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/minetest
 cp lib/lua/COPYRIGHT %{buildroot}/usr/share/package-licenses/minetest/lib_lua_COPYRIGHT
