@@ -4,7 +4,7 @@
 #
 Name     : minetest
 Version  : 5.0.0
-Release  : 27
+Release  : 28
 URL      : https://github.com/minetest/minetest/archive/5.0.0.tar.gz
 Source0  : https://github.com/minetest/minetest/archive/5.0.0.tar.gz
 Summary  : No detailed summary available
@@ -71,6 +71,14 @@ Requires: minetest-man = %{version}-%{release}
 doc components for the minetest package.
 
 
+%package extras
+Summary: extras components for the minetest package.
+Group: Default
+
+%description extras
+extras components for the minetest package.
+
+
 %package license
 Summary: license components for the minetest package.
 Group: Default
@@ -95,7 +103,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1551758856
+export SOURCE_DATE_EPOCH=1551759835
 mkdir -p clr-build
 pushd clr-build
 export LDFLAGS="${LDFLAGS} -fno-lto"
@@ -107,7 +115,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1551758856
+export SOURCE_DATE_EPOCH=1551759835
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/minetest
 cp LICENSE.txt %{buildroot}/usr/share/package-licenses/minetest/LICENSE.txt
@@ -121,73 +129,73 @@ popd
 
 %files bin
 %defattr(-,root,root,-)
+%exclude /usr/bin/minetestserver
 /usr/bin/minetest
-/usr/bin/minetestserver
 
 %files data
 %defattr(-,root,root,-)
+%exclude /usr/share/minetest/builtin/async/init.lua
+%exclude /usr/share/minetest/builtin/client/chatcommands.lua
+%exclude /usr/share/minetest/builtin/client/death_formspec.lua
+%exclude /usr/share/minetest/builtin/client/init.lua
+%exclude /usr/share/minetest/builtin/client/register.lua
+%exclude /usr/share/minetest/builtin/common/after.lua
+%exclude /usr/share/minetest/builtin/common/async_event.lua
+%exclude /usr/share/minetest/builtin/common/chatcommands.lua
+%exclude /usr/share/minetest/builtin/common/filterlist.lua
+%exclude /usr/share/minetest/builtin/common/misc_helpers.lua
+%exclude /usr/share/minetest/builtin/common/serialize.lua
+%exclude /usr/share/minetest/builtin/common/strict.lua
+%exclude /usr/share/minetest/builtin/common/vector.lua
+%exclude /usr/share/minetest/builtin/fstk/buttonbar.lua
+%exclude /usr/share/minetest/builtin/fstk/dialog.lua
+%exclude /usr/share/minetest/builtin/fstk/tabview.lua
+%exclude /usr/share/minetest/builtin/fstk/ui.lua
+%exclude /usr/share/minetest/builtin/game/auth.lua
+%exclude /usr/share/minetest/builtin/game/chatcommands.lua
+%exclude /usr/share/minetest/builtin/game/constants.lua
+%exclude /usr/share/minetest/builtin/game/deprecated.lua
+%exclude /usr/share/minetest/builtin/game/detached_inventory.lua
+%exclude /usr/share/minetest/builtin/game/falling.lua
+%exclude /usr/share/minetest/builtin/game/features.lua
+%exclude /usr/share/minetest/builtin/game/forceloading.lua
+%exclude /usr/share/minetest/builtin/game/init.lua
+%exclude /usr/share/minetest/builtin/game/item.lua
+%exclude /usr/share/minetest/builtin/game/item_entity.lua
+%exclude /usr/share/minetest/builtin/game/misc.lua
+%exclude /usr/share/minetest/builtin/game/privileges.lua
+%exclude /usr/share/minetest/builtin/game/register.lua
+%exclude /usr/share/minetest/builtin/game/statbars.lua
+%exclude /usr/share/minetest/builtin/game/static_spawn.lua
+%exclude /usr/share/minetest/builtin/game/voxelarea.lua
+%exclude /usr/share/minetest/builtin/init.lua
+%exclude /usr/share/minetest/builtin/mainmenu/common.lua
+%exclude /usr/share/minetest/builtin/mainmenu/dlg_config_world.lua
+%exclude /usr/share/minetest/builtin/mainmenu/dlg_contentstore.lua
+%exclude /usr/share/minetest/builtin/mainmenu/dlg_create_world.lua
+%exclude /usr/share/minetest/builtin/mainmenu/dlg_delete_content.lua
+%exclude /usr/share/minetest/builtin/mainmenu/dlg_delete_world.lua
+%exclude /usr/share/minetest/builtin/mainmenu/dlg_rename_modpack.lua
+%exclude /usr/share/minetest/builtin/mainmenu/dlg_settings_advanced.lua
+%exclude /usr/share/minetest/builtin/mainmenu/generate_from_settingtypes.lua
+%exclude /usr/share/minetest/builtin/mainmenu/init.lua
+%exclude /usr/share/minetest/builtin/mainmenu/pkgmgr.lua
+%exclude /usr/share/minetest/builtin/mainmenu/tab_content.lua
+%exclude /usr/share/minetest/builtin/mainmenu/tab_credits.lua
+%exclude /usr/share/minetest/builtin/mainmenu/tab_local.lua
+%exclude /usr/share/minetest/builtin/mainmenu/tab_online.lua
+%exclude /usr/share/minetest/builtin/mainmenu/tab_settings.lua
+%exclude /usr/share/minetest/builtin/mainmenu/tab_simple_main.lua
+%exclude /usr/share/minetest/builtin/mainmenu/textures.lua
+%exclude /usr/share/minetest/builtin/profiler/init.lua
+%exclude /usr/share/minetest/builtin/profiler/instrumentation.lua
+%exclude /usr/share/minetest/builtin/profiler/reporter.lua
+%exclude /usr/share/minetest/builtin/profiler/sampling.lua
+%exclude /usr/share/minetest/builtin/settingtypes.txt
 /usr/share/applications/net.minetest.minetest.desktop
 /usr/share/icons/hicolor/128x128/apps/minetest.png
 /usr/share/icons/hicolor/scalable/apps/minetest.svg
 /usr/share/metainfo/net.minetest.minetest.appdata.xml
-/usr/share/minetest/builtin/async/init.lua
-/usr/share/minetest/builtin/client/chatcommands.lua
-/usr/share/minetest/builtin/client/death_formspec.lua
-/usr/share/minetest/builtin/client/init.lua
-/usr/share/minetest/builtin/client/register.lua
-/usr/share/minetest/builtin/common/after.lua
-/usr/share/minetest/builtin/common/async_event.lua
-/usr/share/minetest/builtin/common/chatcommands.lua
-/usr/share/minetest/builtin/common/filterlist.lua
-/usr/share/minetest/builtin/common/misc_helpers.lua
-/usr/share/minetest/builtin/common/serialize.lua
-/usr/share/minetest/builtin/common/strict.lua
-/usr/share/minetest/builtin/common/vector.lua
-/usr/share/minetest/builtin/fstk/buttonbar.lua
-/usr/share/minetest/builtin/fstk/dialog.lua
-/usr/share/minetest/builtin/fstk/tabview.lua
-/usr/share/minetest/builtin/fstk/ui.lua
-/usr/share/minetest/builtin/game/auth.lua
-/usr/share/minetest/builtin/game/chatcommands.lua
-/usr/share/minetest/builtin/game/constants.lua
-/usr/share/minetest/builtin/game/deprecated.lua
-/usr/share/minetest/builtin/game/detached_inventory.lua
-/usr/share/minetest/builtin/game/falling.lua
-/usr/share/minetest/builtin/game/features.lua
-/usr/share/minetest/builtin/game/forceloading.lua
-/usr/share/minetest/builtin/game/init.lua
-/usr/share/minetest/builtin/game/item.lua
-/usr/share/minetest/builtin/game/item_entity.lua
-/usr/share/minetest/builtin/game/misc.lua
-/usr/share/minetest/builtin/game/privileges.lua
-/usr/share/minetest/builtin/game/register.lua
-/usr/share/minetest/builtin/game/statbars.lua
-/usr/share/minetest/builtin/game/static_spawn.lua
-/usr/share/minetest/builtin/game/voxelarea.lua
-/usr/share/minetest/builtin/init.lua
-/usr/share/minetest/builtin/mainmenu/common.lua
-/usr/share/minetest/builtin/mainmenu/dlg_config_world.lua
-/usr/share/minetest/builtin/mainmenu/dlg_contentstore.lua
-/usr/share/minetest/builtin/mainmenu/dlg_create_world.lua
-/usr/share/minetest/builtin/mainmenu/dlg_delete_content.lua
-/usr/share/minetest/builtin/mainmenu/dlg_delete_world.lua
-/usr/share/minetest/builtin/mainmenu/dlg_rename_modpack.lua
-/usr/share/minetest/builtin/mainmenu/dlg_settings_advanced.lua
-/usr/share/minetest/builtin/mainmenu/generate_from_settingtypes.lua
-/usr/share/minetest/builtin/mainmenu/init.lua
-/usr/share/minetest/builtin/mainmenu/pkgmgr.lua
-/usr/share/minetest/builtin/mainmenu/tab_content.lua
-/usr/share/minetest/builtin/mainmenu/tab_credits.lua
-/usr/share/minetest/builtin/mainmenu/tab_local.lua
-/usr/share/minetest/builtin/mainmenu/tab_online.lua
-/usr/share/minetest/builtin/mainmenu/tab_settings.lua
-/usr/share/minetest/builtin/mainmenu/tab_simple_main.lua
-/usr/share/minetest/builtin/mainmenu/textures.lua
-/usr/share/minetest/builtin/profiler/init.lua
-/usr/share/minetest/builtin/profiler/instrumentation.lua
-/usr/share/minetest/builtin/profiler/reporter.lua
-/usr/share/minetest/builtin/profiler/sampling.lua
-/usr/share/minetest/builtin/settingtypes.txt
 /usr/share/minetest/client/shaders/3d_interlaced_merge/opengl_fragment.glsl
 /usr/share/minetest/client/shaders/3d_interlaced_merge/opengl_vertex.glsl
 /usr/share/minetest/client/shaders/default_shader/opengl_fragment.glsl
@@ -447,6 +455,68 @@ popd
 %files doc
 %defattr(0644,root,root,0755)
 %doc /usr/share/doc/minetest/*
+
+%files extras
+%defattr(-,root,root,-)
+/usr/bin/minetestserver
+/usr/share/minetest/builtin/async/init.lua
+/usr/share/minetest/builtin/client/chatcommands.lua
+/usr/share/minetest/builtin/client/death_formspec.lua
+/usr/share/minetest/builtin/client/init.lua
+/usr/share/minetest/builtin/client/register.lua
+/usr/share/minetest/builtin/common/after.lua
+/usr/share/minetest/builtin/common/async_event.lua
+/usr/share/minetest/builtin/common/chatcommands.lua
+/usr/share/minetest/builtin/common/filterlist.lua
+/usr/share/minetest/builtin/common/misc_helpers.lua
+/usr/share/minetest/builtin/common/serialize.lua
+/usr/share/minetest/builtin/common/strict.lua
+/usr/share/minetest/builtin/common/vector.lua
+/usr/share/minetest/builtin/fstk/buttonbar.lua
+/usr/share/minetest/builtin/fstk/dialog.lua
+/usr/share/minetest/builtin/fstk/tabview.lua
+/usr/share/minetest/builtin/fstk/ui.lua
+/usr/share/minetest/builtin/game/auth.lua
+/usr/share/minetest/builtin/game/chatcommands.lua
+/usr/share/minetest/builtin/game/constants.lua
+/usr/share/minetest/builtin/game/deprecated.lua
+/usr/share/minetest/builtin/game/detached_inventory.lua
+/usr/share/minetest/builtin/game/falling.lua
+/usr/share/minetest/builtin/game/features.lua
+/usr/share/minetest/builtin/game/forceloading.lua
+/usr/share/minetest/builtin/game/init.lua
+/usr/share/minetest/builtin/game/item.lua
+/usr/share/minetest/builtin/game/item_entity.lua
+/usr/share/minetest/builtin/game/misc.lua
+/usr/share/minetest/builtin/game/privileges.lua
+/usr/share/minetest/builtin/game/register.lua
+/usr/share/minetest/builtin/game/statbars.lua
+/usr/share/minetest/builtin/game/static_spawn.lua
+/usr/share/minetest/builtin/game/voxelarea.lua
+/usr/share/minetest/builtin/init.lua
+/usr/share/minetest/builtin/mainmenu/common.lua
+/usr/share/minetest/builtin/mainmenu/dlg_config_world.lua
+/usr/share/minetest/builtin/mainmenu/dlg_contentstore.lua
+/usr/share/minetest/builtin/mainmenu/dlg_create_world.lua
+/usr/share/minetest/builtin/mainmenu/dlg_delete_content.lua
+/usr/share/minetest/builtin/mainmenu/dlg_delete_world.lua
+/usr/share/minetest/builtin/mainmenu/dlg_rename_modpack.lua
+/usr/share/minetest/builtin/mainmenu/dlg_settings_advanced.lua
+/usr/share/minetest/builtin/mainmenu/generate_from_settingtypes.lua
+/usr/share/minetest/builtin/mainmenu/init.lua
+/usr/share/minetest/builtin/mainmenu/pkgmgr.lua
+/usr/share/minetest/builtin/mainmenu/tab_content.lua
+/usr/share/minetest/builtin/mainmenu/tab_credits.lua
+/usr/share/minetest/builtin/mainmenu/tab_local.lua
+/usr/share/minetest/builtin/mainmenu/tab_online.lua
+/usr/share/minetest/builtin/mainmenu/tab_settings.lua
+/usr/share/minetest/builtin/mainmenu/tab_simple_main.lua
+/usr/share/minetest/builtin/mainmenu/textures.lua
+/usr/share/minetest/builtin/profiler/init.lua
+/usr/share/minetest/builtin/profiler/instrumentation.lua
+/usr/share/minetest/builtin/profiler/reporter.lua
+/usr/share/minetest/builtin/profiler/sampling.lua
+/usr/share/minetest/builtin/settingtypes.txt
 
 %files license
 %defattr(0644,root,root,0755)
