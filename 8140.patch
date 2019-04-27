@@ -1,0 +1,171 @@
+From 8e7cddc69451c8d9656ee70f233c4138f3f1457c Mon Sep 17 00:00:00 2001
+From: Auke Kok <sofar@foo-projects.org>
+Date: Mon, 28 Jan 2019 23:13:20 -0800
+Subject: [PATCH 1/2] Force send a mapblock to a player.
+
+Send a single mapblock to a specific remote player.
+
+This is badly needed for mods and games where players are teleported
+into terrain which may be not generated, loaded, or modified
+significantly since the last player visit.
+
+In all these cases, the player currently ends up in void, air, or
+inside blocks which not only looks bad, but has the effect that the
+player might end up falling and then the server needs to correct for
+the player position again later, which is a hack.
+
+The best solution is to send at least the single mapblock that the
+player will be teleported to. I've tested this with ITB which does this
+all the time, and I can see it functioning as expected (it even shows
+a half loaded entry hallway, as the further blocks aren't loaded yet).
+
+The parameter is a blockpos (table of x, y, z), not a regular pos.
+
+The function may return false if the call failed. This is most likely
+due to the target position not being generated or emerged yet, or
+another internal failure, such as the player not being initialized.
+---
+ doc/lua_api.txt                 |  5 +++++
+ src/script/lua_api/l_object.cpp | 19 +++++++++++++++++++
+ src/script/lua_api/l_object.h   |  2 ++
+ src/server.cpp                  | 22 ++++++++++++++++++++++
+ src/server.h                    |  3 +++
+ 5 files changed, 51 insertions(+)
+
+diff --git a/doc/lua_api.txt b/doc/lua_api.txt
+index c7035bb728..c75800cf42 100644
+--- a/doc/lua_api.txt
++++ b/doc/lua_api.txt
+@@ -5382,6 +5382,11 @@ This is basically a reference to a C++ `ServerActiveObject`
+     * in first person view
+     * in third person view (max. values `{x=-10/10,y=-10,15,z=-5/5}`)
+ * `get_eye_offset()`: returns `offset_first` and `offset_third`
++* `send_mapblock(blockpos)`:
++    * Sends a server-side loaded mapblock to the player.
++    * Returns `false` if failed.
++    * Resource intensive - use sparsely
++    * To get blockpos, integer divide pos by 16
+ 
+ `PcgRandom`
+ -----------
+diff --git a/src/script/lua_api/l_object.cpp b/src/script/lua_api/l_object.cpp
+index 2efcd894a5..b1f4e3da52 100644
+--- a/src/script/lua_api/l_object.cpp
++++ b/src/script/lua_api/l_object.cpp
+@@ -584,6 +584,24 @@ int ObjectRef::l_get_eye_offset(lua_State *L)
+ 	return 2;
+ }
+ 
++// send_mapblock(self, pos)
++int ObjectRef::l_send_mapblock(lua_State *L)
++{
++	NO_MAP_LOCK_REQUIRED;
++	ObjectRef *ref = checkobject(L, 1);
++
++	RemotePlayer *player = getplayer(ref);
++	if (!player)
++		return 0;
++	v3s16 p = read_v3s16(L, 2);
++
++	session_t peer_id = player->getPeerId();
++	bool r = getServer(L)->SendBlock(peer_id, p);
++
++	lua_pushboolean(L, r);
++	return 1;
++}
++
+ // set_animation_frame_speed(self, frame_speed)
+ int ObjectRef::l_set_animation_frame_speed(lua_State *L)
+ {
+@@ -1958,5 +1976,6 @@ luaL_Reg ObjectRef::methods[] = {
+ 	luamethod(ObjectRef, get_local_animation),
+ 	luamethod(ObjectRef, set_eye_offset),
+ 	luamethod(ObjectRef, get_eye_offset),
++	luamethod(ObjectRef, send_mapblock),
+ 	{0,0}
+ };
+diff --git a/src/script/lua_api/l_object.h b/src/script/lua_api/l_object.h
+index c7d963d87e..653d833f67 100644
+--- a/src/script/lua_api/l_object.h
++++ b/src/script/lua_api/l_object.h
+@@ -351,4 +351,6 @@ class ObjectRef : public ModApiBase {
+ 	// get_nametag_attributes(self)
+ 	static int l_get_nametag_attributes(lua_State *L);
+ 
++	// send_mapblock(pos)
++	static int l_send_mapblock(lua_State *L);
+ };
+diff --git a/src/server.cpp b/src/server.cpp
+index 8694989651..496170da3f 100644
+--- a/src/server.cpp
++++ b/src/server.cpp
+@@ -2312,6 +2312,28 @@ void Server::SendBlocks(float dtime)
+ 	m_clients.unlock();
+ }
+ 
++bool Server::SendBlock(session_t peer_id, const v3s16 &blockpos)
++{
++	MapBlock *block = nullptr;
++	try {
++		block = m_env->getMap().getBlockNoCreate(blockpos);
++	} catch (InvalidPositionException &e) {};
++	if (!block)
++		return false;
++
++	m_clients.lock();
++	RemoteClient *client = m_clients.lockedGetClientNoEx(peer_id, CS_Active);
++	if (!client || client->isBlockSent(blockpos)) {
++		m_clients.unlock();
++		return false;
++	}
++	SendBlockNoLock(peer_id, block, client->serialization_version,
++			client->net_proto_version);
++	m_clients.unlock();
++
++	return true;
++}
++
+ void Server::fillMediaCache()
+ {
+ 	infostream<<"Server: Calculating media file checksums"<<std::endl;
+diff --git a/src/server.h b/src/server.h
+index 5949d9bf15..5e58ac9e66 100644
+--- a/src/server.h
++++ b/src/server.h
+@@ -344,6 +344,9 @@ class Server : public con::PeerHandler, public MapEventReceiver,
+ 	bool sendModChannelMessage(const std::string &channel, const std::string &message);
+ 	ModChannel *getModChannel(const std::string &channel);
+ 
++	// Send block to specific player only
++	bool SendBlock(session_t peer_id, const v3s16 &blockpos);
++
+ 	// Bind address
+ 	Address m_bind_addr;
+ 
+
+From fbc87f74e865dd1b7debaef7b5a8a894d0c946c0 Mon Sep 17 00:00:00 2001
+From: Auke Kok <sofar@foo-projects.org>
+Date: Tue, 12 Mar 2019 20:59:33 -0700
+Subject: [PATCH 2/2] Always send mapblock on teleport or respawn.
+
+This avoids the need for mods to send a mapblock on teleport or
+respawn, since any call to `player:set_pos()` will pass this code.
+---
+ src/content_sao.cpp | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/src/content_sao.cpp b/src/content_sao.cpp
+index f0d7fbf5d6..b7a9c95402 100644
+--- a/src/content_sao.cpp
++++ b/src/content_sao.cpp
+@@ -1205,6 +1205,10 @@ void PlayerSAO::setPos(const v3f &pos)
+ 	if(isAttached())
+ 		return;
+ 
++	// Send mapblock of target location
++	v3s16 blockpos = v3s16(pos.X / MAP_BLOCKSIZE, pos.Y / MAP_BLOCKSIZE, pos.Z / MAP_BLOCKSIZE);
++	m_env->getGameDef()->SendBlock(m_peer_id, blockpos);
++
+ 	setBasePosition(pos);
+ 	// Movement caused by this command is always valid
+ 	m_last_good_position = pos;
