@@ -8,6 +8,7 @@
 /usr/share/minetest/builtin/common/async_event.lua
 /usr/share/minetest/builtin/common/chatcommands.lua
 /usr/share/minetest/builtin/common/filterlist.lua
+/usr/share/minetest/builtin/common/information_formspecs.lua
 /usr/share/minetest/builtin/common/misc_helpers.lua
 /usr/share/minetest/builtin/common/serialize.lua
 /usr/share/minetest/builtin/common/strict.lua
@@ -18,6 +19,7 @@
 /usr/share/minetest/builtin/fstk/ui.lua
 /usr/share/minetest/builtin/game/auth.lua
 /usr/share/minetest/builtin/game/chatcommands.lua
+/usr/share/minetest/builtin/game/chat.lua
 /usr/share/minetest/builtin/game/constants.lua
 /usr/share/minetest/builtin/game/deprecated.lua
 /usr/share/minetest/builtin/game/detached_inventory.lua
@@ -25,8 +27,9 @@
 /usr/share/minetest/builtin/game/features.lua
 /usr/share/minetest/builtin/game/forceloading.lua
 /usr/share/minetest/builtin/game/init.lua
-/usr/share/minetest/builtin/game/item.lua
 /usr/share/minetest/builtin/game/item_entity.lua
+/usr/share/minetest/builtin/game/item.lua
+/usr/share/minetest/builtin/game/knockback.lua
 /usr/share/minetest/builtin/game/misc.lua
 /usr/share/minetest/builtin/game/privileges.lua
 /usr/share/minetest/builtin/game/register.lua
