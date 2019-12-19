@@ -4,7 +4,7 @@
 #
 Name     : minetest
 Version  : 5.1.0
-Release  : 32
+Release  : 33
 URL      : https://github.com/minetest/minetest/archive/5.1.0/minetest-5.1.0.tar.gz
 Source0  : https://github.com/minetest/minetest/archive/5.1.0/minetest-5.1.0.tar.gz
 Summary  : No detailed summary available
@@ -38,6 +38,7 @@ BuildRequires : pkgconfig(x11)
 BuildRequires : postgresql-dev
 BuildRequires : sqlite-autoconf-dev
 BuildRequires : zlib-dev
+Patch1: 9133.patch
 
 %description
 Minetest
@@ -99,13 +100,15 @@ man components for the minetest package.
 
 %prep
 %setup -q -n minetest-5.1.0
+cd %{_builddir}/minetest-5.1.0
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570900802
+export SOURCE_DATE_EPOCH=1576773695
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -121,7 +124,7 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1570900802
+export SOURCE_DATE_EPOCH=1576773695
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/minetest
 cp %{_builddir}/minetest-5.1.0/LICENSE.txt %{buildroot}/usr/share/package-licenses/minetest/a91af6f95c72f679376baa29fba1fb2314589492
