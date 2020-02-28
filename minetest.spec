@@ -4,7 +4,7 @@
 #
 Name     : minetest
 Version  : 5.1.1
-Release  : 34
+Release  : 35
 URL      : https://github.com/minetest/minetest/archive/5.1.1/minetest-5.1.1.tar.gz
 Source0  : https://github.com/minetest/minetest/archive/5.1.1/minetest-5.1.1.tar.gz
 Summary  : No detailed summary available
@@ -16,12 +16,10 @@ Requires: minetest-license = %{version}-%{release}
 Requires: minetest-man = %{version}-%{release}
 BuildRequires : LuaJIT-dev
 BuildRequires : buildreq-cmake
-BuildRequires : buildreq-mvn
 BuildRequires : bzip2-dev
 BuildRequires : curl-dev
 BuildRequires : doxygen
 BuildRequires : gmp-dev
-BuildRequires : gradle
 BuildRequires : irrlicht-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
 BuildRequires : libjpeg-turbo-dev
@@ -106,7 +104,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1579303212
+export SOURCE_DATE_EPOCH=1582932698
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -122,7 +120,7 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1579303212
+export SOURCE_DATE_EPOCH=1582932698
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/minetest
 cp %{_builddir}/minetest-5.1.1/LICENSE.txt %{buildroot}/usr/share/package-licenses/minetest/a91af6f95c72f679376baa29fba1fb2314589492
