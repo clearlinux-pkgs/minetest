@@ -1,18 +1,19 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-openal-soft-dev
-irrlicht-dev
-libvorbis-dev
-libogg-dev
-sqlite-autoconf-dev
+LuaJIT-dev
+bzip2-dev
 curl-dev
 gmp-dev
-mesa-dev
-pkgconfig(x11)
+irrlichtmt-dev
 libjpeg-turbo-dev
-bzip2-dev
-pkgconfig(libpng)
-zlib-dev
-LuaJIT-dev
-postgresql-dev
+libogg-dev
 libspatialindex-dev
+libvorbis-dev
+mesa-dev
+openal-soft-dev
+pkgconfig(libpng)
+pkgconfig(x11)
+postgresql-dev
+sqlite-autoconf-dev
+zlib-dev
+zstd-dev
