@@ -4,7 +4,7 @@
 #
 Name     : minetest
 Version  : 5.6.1
-Release  : 41
+Release  : 43
 URL      : https://github.com/minetest/minetest/archive/5.6.1/minetest-5.6.1.tar.gz
 Source0  : https://github.com/minetest/minetest/archive/5.6.1/minetest-5.6.1.tar.gz
 Summary  : No detailed summary available
@@ -113,7 +113,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1663787013
+export SOURCE_DATE_EPOCH=1666289706
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -129,7 +129,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1663787013
+export SOURCE_DATE_EPOCH=1666289706
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/minetest
 cp %{_builddir}/minetest-%{version}/LICENSE.txt %{buildroot}/usr/share/package-licenses/minetest/e9654b037b60c29d73bb651d696d2edfc1b698c3
@@ -156,27 +156,6 @@ popd
 /usr/share/icons/hicolor/128x128/apps/minetest.png
 /usr/share/icons/hicolor/scalable/apps/minetest.svg
 /usr/share/metainfo/net.minetest.minetest.appdata.xml
-/usr/share/minetest/builtin/async/game.lua
-/usr/share/minetest/builtin/async/mainmenu.lua
-/usr/share/minetest/builtin/client/misc.lua
-/usr/share/minetest/builtin/common/mod_storage.lua
-/usr/share/minetest/builtin/common/tests/misc_helpers_spec.lua
-/usr/share/minetest/builtin/common/tests/serialize_spec.lua
-/usr/share/minetest/builtin/common/tests/vector_spec.lua
-/usr/share/minetest/builtin/game/async.lua
-/usr/share/minetest/builtin/game/item_s.lua
-/usr/share/minetest/builtin/game/misc_s.lua
-/usr/share/minetest/builtin/locale/__builtin.de.tr
-/usr/share/minetest/builtin/locale/__builtin.it.tr
-/usr/share/minetest/builtin/locale/template.txt
-/usr/share/minetest/builtin/mainmenu/async_event.lua
-/usr/share/minetest/builtin/mainmenu/dlg_register.lua
-/usr/share/minetest/builtin/mainmenu/dlg_version_info.lua
-/usr/share/minetest/builtin/mainmenu/game_theme.lua
-/usr/share/minetest/builtin/mainmenu/serverlistmgr.lua
-/usr/share/minetest/builtin/mainmenu/tab_about.lua
-/usr/share/minetest/builtin/mainmenu/tests/favorites_wellformed.txt
-/usr/share/minetest/builtin/mainmenu/tests/serverlistmgr_spec.lua
 /usr/share/minetest/client/shaders/3d_interlaced_merge/opengl_fragment.glsl
 /usr/share/minetest/client/shaders/3d_interlaced_merge/opengl_vertex.glsl
 /usr/share/minetest/client/shaders/default_shader/opengl_fragment.glsl
@@ -722,22 +701,30 @@ popd
 %files extras
 %defattr(-,root,root,-)
 /usr/bin/minetestserver
+/usr/share/minetest/builtin/async/game.lua
+/usr/share/minetest/builtin/async/mainmenu.lua
 /usr/share/minetest/builtin/client/chatcommands.lua
 /usr/share/minetest/builtin/client/death_formspec.lua
 /usr/share/minetest/builtin/client/init.lua
+/usr/share/minetest/builtin/client/misc.lua
 /usr/share/minetest/builtin/client/register.lua
 /usr/share/minetest/builtin/common/after.lua
 /usr/share/minetest/builtin/common/chatcommands.lua
 /usr/share/minetest/builtin/common/filterlist.lua
 /usr/share/minetest/builtin/common/information_formspecs.lua
 /usr/share/minetest/builtin/common/misc_helpers.lua
+/usr/share/minetest/builtin/common/mod_storage.lua
 /usr/share/minetest/builtin/common/serialize.lua
 /usr/share/minetest/builtin/common/strict.lua
+/usr/share/minetest/builtin/common/tests/misc_helpers_spec.lua
+/usr/share/minetest/builtin/common/tests/serialize_spec.lua
+/usr/share/minetest/builtin/common/tests/vector_spec.lua
 /usr/share/minetest/builtin/common/vector.lua
 /usr/share/minetest/builtin/fstk/buttonbar.lua
 /usr/share/minetest/builtin/fstk/dialog.lua
 /usr/share/minetest/builtin/fstk/tabview.lua
 /usr/share/minetest/builtin/fstk/ui.lua
+/usr/share/minetest/builtin/game/async.lua
 /usr/share/minetest/builtin/game/auth.lua
 /usr/share/minetest/builtin/game/chat.lua
 /usr/share/minetest/builtin/game/constants.lua
@@ -749,29 +736,42 @@ popd
 /usr/share/minetest/builtin/game/init.lua
 /usr/share/minetest/builtin/game/item.lua
 /usr/share/minetest/builtin/game/item_entity.lua
+/usr/share/minetest/builtin/game/item_s.lua
 /usr/share/minetest/builtin/game/knockback.lua
 /usr/share/minetest/builtin/game/misc.lua
+/usr/share/minetest/builtin/game/misc_s.lua
 /usr/share/minetest/builtin/game/privileges.lua
 /usr/share/minetest/builtin/game/register.lua
 /usr/share/minetest/builtin/game/statbars.lua
 /usr/share/minetest/builtin/game/static_spawn.lua
 /usr/share/minetest/builtin/game/voxelarea.lua
 /usr/share/minetest/builtin/init.lua
+/usr/share/minetest/builtin/locale/__builtin.de.tr
+/usr/share/minetest/builtin/locale/__builtin.it.tr
+/usr/share/minetest/builtin/locale/template.txt
+/usr/share/minetest/builtin/mainmenu/async_event.lua
 /usr/share/minetest/builtin/mainmenu/common.lua
 /usr/share/minetest/builtin/mainmenu/dlg_config_world.lua
 /usr/share/minetest/builtin/mainmenu/dlg_contentstore.lua
 /usr/share/minetest/builtin/mainmenu/dlg_create_world.lua
 /usr/share/minetest/builtin/mainmenu/dlg_delete_content.lua
 /usr/share/minetest/builtin/mainmenu/dlg_delete_world.lua
+/usr/share/minetest/builtin/mainmenu/dlg_register.lua
 /usr/share/minetest/builtin/mainmenu/dlg_rename_modpack.lua
 /usr/share/minetest/builtin/mainmenu/dlg_settings_advanced.lua
+/usr/share/minetest/builtin/mainmenu/dlg_version_info.lua
+/usr/share/minetest/builtin/mainmenu/game_theme.lua
 /usr/share/minetest/builtin/mainmenu/generate_from_settingtypes.lua
 /usr/share/minetest/builtin/mainmenu/init.lua
 /usr/share/minetest/builtin/mainmenu/pkgmgr.lua
+/usr/share/minetest/builtin/mainmenu/serverlistmgr.lua
+/usr/share/minetest/builtin/mainmenu/tab_about.lua
 /usr/share/minetest/builtin/mainmenu/tab_content.lua
 /usr/share/minetest/builtin/mainmenu/tab_local.lua
 /usr/share/minetest/builtin/mainmenu/tab_online.lua
 /usr/share/minetest/builtin/mainmenu/tab_settings.lua
+/usr/share/minetest/builtin/mainmenu/tests/favorites_wellformed.txt
+/usr/share/minetest/builtin/mainmenu/tests/serverlistmgr_spec.lua
 /usr/share/minetest/builtin/profiler/init.lua
 /usr/share/minetest/builtin/profiler/instrumentation.lua
 /usr/share/minetest/builtin/profiler/reporter.lua
