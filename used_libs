@@ -10,7 +10,7 @@ libm.so.6
 libncursesw.so.6
 libopenal.so.1
 libpq.so.5
-libspatialindex.so.4
+libspatialindex.so.6
 libsqlite3.so.0
 libstdc++.so.6
 libtinfow.so.6

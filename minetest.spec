@@ -4,7 +4,7 @@
 #
 Name     : minetest
 Version  : 5.6.1
-Release  : 43
+Release  : 44
 URL      : https://github.com/minetest/minetest/archive/5.6.1/minetest-5.6.1.tar.gz
 Source0  : https://github.com/minetest/minetest/archive/5.6.1/minetest-5.6.1.tar.gz
 Summary  : No detailed summary available
@@ -113,7 +113,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1666289706
+export SOURCE_DATE_EPOCH=1672187212
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -129,7 +129,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1666289706
+export SOURCE_DATE_EPOCH=1672187212
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/minetest
 cp %{_builddir}/minetest-%{version}/LICENSE.txt %{buildroot}/usr/share/package-licenses/minetest/e9654b037b60c29d73bb651d696d2edfc1b698c3
