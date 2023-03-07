@@ -4,7 +4,7 @@
 #
 Name     : minetest
 Version  : 5.6.1
-Release  : 44
+Release  : 45
 URL      : https://github.com/minetest/minetest/archive/5.6.1/minetest-5.6.1.tar.gz
 Source0  : https://github.com/minetest/minetest/archive/5.6.1/minetest-5.6.1.tar.gz
 Summary  : No detailed summary available
