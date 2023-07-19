@@ -5,7 +5,7 @@
 #
 Name     : minetest
 Version  : 5.7.0
-Release  : 46
+Release  : 47
 URL      : https://github.com/minetest/minetest/archive/5.7.0/minetest-5.7.0.tar.gz
 Source0  : https://github.com/minetest/minetest/archive/5.7.0/minetest-5.7.0.tar.gz
 Summary  : No detailed summary available
@@ -118,14 +118,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1681343327
+export SOURCE_DATE_EPOCH=1689787716
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 %cmake .. -DBUILD_CLIENT=1 \
 -DBUILD_SERVER=1 \
 -DENABLE_FREETYPE=1 \
@@ -134,7 +134,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1681343327
+export SOURCE_DATE_EPOCH=1689787716
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/minetest
 cp %{_builddir}/minetest-%{version}/COPYING.LESSER %{buildroot}/usr/share/package-licenses/minetest/01a6b4bf79aca9b556822601186afab86e8c4fbf || :
@@ -300,7 +300,7 @@ popd
 
 %files doc
 %defattr(0644,root,root,0755)
-%doc /usr/share/doc/minetest/*
+/usr/share/doc/minetest/*
 
 %files extras
 %defattr(-,root,root,-)
