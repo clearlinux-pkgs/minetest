@@ -7,7 +7,7 @@
 #
 Name     : minetest
 Version  : 5.10.0
-Release  : 51
+Release  : 52
 URL      : https://github.com/minetest/minetest/archive/5.10.0/minetest-5.10.0.tar.gz
 Source0  : https://github.com/minetest/minetest/archive/5.10.0/minetest-5.10.0.tar.gz
 Summary  : No detailed summary available
@@ -143,7 +143,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1731432628
+export SOURCE_DATE_EPOCH=1731607112
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -177,10 +177,11 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1731432628
+export SOURCE_DATE_EPOCH=1731607112
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/minetest
 cp %{_builddir}/minetest-%{version}/COPYING.LESSER %{buildroot}/usr/share/package-licenses/minetest/01a6b4bf79aca9b556822601186afab86e8c4fbf || :
+cp %{_builddir}/minetest-%{version}/LICENSE.txt %{buildroot}/usr/share/package-licenses/minetest/31890dbe089be28ef8b919dca305c7903e7c2675 || :
 cp %{_builddir}/minetest-%{version}/fonts/Arimo-LICENSE.txt %{buildroot}/usr/share/package-licenses/minetest/b1b13828a3a2be603b24a38d3948c7811d85f851 || :
 cp %{_builddir}/minetest-%{version}/fonts/Cousine-LICENSE.txt %{buildroot}/usr/share/package-licenses/minetest/2b1b42e96714bc36f7bee9210a5e69e2586f7ee3 || :
 cp %{_builddir}/minetest-%{version}/fonts/DroidSansFallbackFull-LICENSE.txt %{buildroot}/usr/share/package-licenses/minetest/b6c8486ea0f9b01549a4a9fd19216d6e8480f8d6 || :
@@ -200,7 +201,6 @@ popd
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/luanti
-/usr/bin/luantiserver
 /usr/bin/minetest
 
 %files data
@@ -208,158 +208,6 @@ popd
 /usr/share/applications/net.minetest.minetest.desktop
 /usr/share/icons/hicolor/128x128/apps/luanti.png
 /usr/share/icons/hicolor/scalable/apps/luanti.svg
-/usr/share/luanti/builtin/async/game.lua
-/usr/share/luanti/builtin/async/mainmenu.lua
-/usr/share/luanti/builtin/client/chatcommands.lua
-/usr/share/luanti/builtin/client/init.lua
-/usr/share/luanti/builtin/client/misc.lua
-/usr/share/luanti/builtin/client/register.lua
-/usr/share/luanti/builtin/common/after.lua
-/usr/share/luanti/builtin/common/chatcommands.lua
-/usr/share/luanti/builtin/common/filterlist.lua
-/usr/share/luanti/builtin/common/information_formspecs.lua
-/usr/share/luanti/builtin/common/item_s.lua
-/usr/share/luanti/builtin/common/math.lua
-/usr/share/luanti/builtin/common/metatable.lua
-/usr/share/luanti/builtin/common/misc_helpers.lua
-/usr/share/luanti/builtin/common/mod_storage.lua
-/usr/share/luanti/builtin/common/register.lua
-/usr/share/luanti/builtin/common/serialize.lua
-/usr/share/luanti/builtin/common/strict.lua
-/usr/share/luanti/builtin/common/tests/after_spec.lua
-/usr/share/luanti/builtin/common/tests/math_spec.lua
-/usr/share/luanti/builtin/common/tests/misc_helpers_spec.lua
-/usr/share/luanti/builtin/common/tests/serialize_spec.lua
-/usr/share/luanti/builtin/common/tests/vector_spec.lua
-/usr/share/luanti/builtin/common/vector.lua
-/usr/share/luanti/builtin/emerge/env.lua
-/usr/share/luanti/builtin/emerge/init.lua
-/usr/share/luanti/builtin/emerge/register.lua
-/usr/share/luanti/builtin/fstk/buttonbar.lua
-/usr/share/luanti/builtin/fstk/dialog.lua
-/usr/share/luanti/builtin/fstk/tabview.lua
-/usr/share/luanti/builtin/fstk/ui.lua
-/usr/share/luanti/builtin/game/async.lua
-/usr/share/luanti/builtin/game/auth.lua
-/usr/share/luanti/builtin/game/chat.lua
-/usr/share/luanti/builtin/game/constants.lua
-/usr/share/luanti/builtin/game/death_screen.lua
-/usr/share/luanti/builtin/game/deprecated.lua
-/usr/share/luanti/builtin/game/detached_inventory.lua
-/usr/share/luanti/builtin/game/falling.lua
-/usr/share/luanti/builtin/game/features.lua
-/usr/share/luanti/builtin/game/forceloading.lua
-/usr/share/luanti/builtin/game/hud.lua
-/usr/share/luanti/builtin/game/init.lua
-/usr/share/luanti/builtin/game/item.lua
-/usr/share/luanti/builtin/game/item_entity.lua
-/usr/share/luanti/builtin/game/knockback.lua
-/usr/share/luanti/builtin/game/misc.lua
-/usr/share/luanti/builtin/game/misc_s.lua
-/usr/share/luanti/builtin/game/privileges.lua
-/usr/share/luanti/builtin/game/register.lua
-/usr/share/luanti/builtin/game/static_spawn.lua
-/usr/share/luanti/builtin/game/tests/test_moveaction.lua
-/usr/share/luanti/builtin/game/voxelarea.lua
-/usr/share/luanti/builtin/init.lua
-/usr/share/luanti/builtin/locale/__builtin.be.tr
-/usr/share/luanti/builtin/locale/__builtin.bg.tr
-/usr/share/luanti/builtin/locale/__builtin.ca.tr
-/usr/share/luanti/builtin/locale/__builtin.cs.tr
-/usr/share/luanti/builtin/locale/__builtin.cy.tr
-/usr/share/luanti/builtin/locale/__builtin.da.tr
-/usr/share/luanti/builtin/locale/__builtin.de.tr
-/usr/share/luanti/builtin/locale/__builtin.el.tr
-/usr/share/luanti/builtin/locale/__builtin.eo.tr
-/usr/share/luanti/builtin/locale/__builtin.es.tr
-/usr/share/luanti/builtin/locale/__builtin.et.tr
-/usr/share/luanti/builtin/locale/__builtin.eu.tr
-/usr/share/luanti/builtin/locale/__builtin.fi.tr
-/usr/share/luanti/builtin/locale/__builtin.fil.tr
-/usr/share/luanti/builtin/locale/__builtin.fr.tr
-/usr/share/luanti/builtin/locale/__builtin.ga.tr
-/usr/share/luanti/builtin/locale/__builtin.gl.tr
-/usr/share/luanti/builtin/locale/__builtin.hu.tr
-/usr/share/luanti/builtin/locale/__builtin.id.tr
-/usr/share/luanti/builtin/locale/__builtin.it.tr
-/usr/share/luanti/builtin/locale/__builtin.ja.tr
-/usr/share/luanti/builtin/locale/__builtin.jbo.tr
-/usr/share/luanti/builtin/locale/__builtin.jv.tr
-/usr/share/luanti/builtin/locale/__builtin.ko.tr
-/usr/share/luanti/builtin/locale/__builtin.kv.tr
-/usr/share/luanti/builtin/locale/__builtin.ky.tr
-/usr/share/luanti/builtin/locale/__builtin.lt.tr
-/usr/share/luanti/builtin/locale/__builtin.lv.tr
-/usr/share/luanti/builtin/locale/__builtin.lzh.tr
-/usr/share/luanti/builtin/locale/__builtin.mn.tr
-/usr/share/luanti/builtin/locale/__builtin.mr.tr
-/usr/share/luanti/builtin/locale/__builtin.ms.tr
-/usr/share/luanti/builtin/locale/__builtin.nb.tr
-/usr/share/luanti/builtin/locale/__builtin.nl.tr
-/usr/share/luanti/builtin/locale/__builtin.nn.tr
-/usr/share/luanti/builtin/locale/__builtin.oc.tr
-/usr/share/luanti/builtin/locale/__builtin.pl.tr
-/usr/share/luanti/builtin/locale/__builtin.pt.tr
-/usr/share/luanti/builtin/locale/__builtin.pt_BR.tr
-/usr/share/luanti/builtin/locale/__builtin.ro.tr
-/usr/share/luanti/builtin/locale/__builtin.ru.tr
-/usr/share/luanti/builtin/locale/__builtin.sk.tr
-/usr/share/luanti/builtin/locale/__builtin.sl.tr
-/usr/share/luanti/builtin/locale/__builtin.sr_Cyrl.tr
-/usr/share/luanti/builtin/locale/__builtin.sr_Latn.tr
-/usr/share/luanti/builtin/locale/__builtin.sv.tr
-/usr/share/luanti/builtin/locale/__builtin.sw.tr
-/usr/share/luanti/builtin/locale/__builtin.tok.tr
-/usr/share/luanti/builtin/locale/__builtin.tr.tr
-/usr/share/luanti/builtin/locale/__builtin.tt.tr
-/usr/share/luanti/builtin/locale/__builtin.uk.tr
-/usr/share/luanti/builtin/locale/__builtin.vi.tr
-/usr/share/luanti/builtin/locale/__builtin.zh_CN.tr
-/usr/share/luanti/builtin/locale/__builtin.zh_TW.tr
-/usr/share/luanti/builtin/locale/template.txt
-/usr/share/luanti/builtin/mainmenu/async_event.lua
-/usr/share/luanti/builtin/mainmenu/common.lua
-/usr/share/luanti/builtin/mainmenu/content/contentdb.lua
-/usr/share/luanti/builtin/mainmenu/content/dlg_contentdb.lua
-/usr/share/luanti/builtin/mainmenu/content/dlg_install.lua
-/usr/share/luanti/builtin/mainmenu/content/dlg_overwrite.lua
-/usr/share/luanti/builtin/mainmenu/content/dlg_package.lua
-/usr/share/luanti/builtin/mainmenu/content/init.lua
-/usr/share/luanti/builtin/mainmenu/content/pkgmgr.lua
-/usr/share/luanti/builtin/mainmenu/content/screenshots.lua
-/usr/share/luanti/builtin/mainmenu/content/tests/pkgmgr_spec.lua
-/usr/share/luanti/builtin/mainmenu/content/update_detector.lua
-/usr/share/luanti/builtin/mainmenu/credits.json
-/usr/share/luanti/builtin/mainmenu/dlg_config_world.lua
-/usr/share/luanti/builtin/mainmenu/dlg_create_world.lua
-/usr/share/luanti/builtin/mainmenu/dlg_delete_content.lua
-/usr/share/luanti/builtin/mainmenu/dlg_delete_world.lua
-/usr/share/luanti/builtin/mainmenu/dlg_register.lua
-/usr/share/luanti/builtin/mainmenu/dlg_reinstall_mtg.lua
-/usr/share/luanti/builtin/mainmenu/dlg_rename_modpack.lua
-/usr/share/luanti/builtin/mainmenu/dlg_version_info.lua
-/usr/share/luanti/builtin/mainmenu/game_theme.lua
-/usr/share/luanti/builtin/mainmenu/init.lua
-/usr/share/luanti/builtin/mainmenu/serverlistmgr.lua
-/usr/share/luanti/builtin/mainmenu/settings/components.lua
-/usr/share/luanti/builtin/mainmenu/settings/dlg_change_mapgen_flags.lua
-/usr/share/luanti/builtin/mainmenu/settings/dlg_settings.lua
-/usr/share/luanti/builtin/mainmenu/settings/generate_from_settingtypes.lua
-/usr/share/luanti/builtin/mainmenu/settings/init.lua
-/usr/share/luanti/builtin/mainmenu/settings/settingtypes.lua
-/usr/share/luanti/builtin/mainmenu/settings/shader_warning_component.lua
-/usr/share/luanti/builtin/mainmenu/settings/shadows_component.lua
-/usr/share/luanti/builtin/mainmenu/tab_about.lua
-/usr/share/luanti/builtin/mainmenu/tab_content.lua
-/usr/share/luanti/builtin/mainmenu/tab_local.lua
-/usr/share/luanti/builtin/mainmenu/tab_online.lua
-/usr/share/luanti/builtin/mainmenu/tests/favorites_wellformed.txt
-/usr/share/luanti/builtin/mainmenu/tests/serverlistmgr_spec.lua
-/usr/share/luanti/builtin/profiler/init.lua
-/usr/share/luanti/builtin/profiler/instrumentation.lua
-/usr/share/luanti/builtin/profiler/reporter.lua
-/usr/share/luanti/builtin/profiler/sampling.lua
-/usr/share/luanti/builtin/settingtypes.txt
 /usr/share/luanti/client/shaders/3d_interlaced_merge/opengl_fragment.glsl
 /usr/share/luanti/client/shaders/3d_interlaced_merge/opengl_vertex.glsl
 /usr/share/luanti/client/shaders/Irrlicht/OneTextureBlend.fsh
@@ -522,13 +370,167 @@ popd
 
 %files extras
 %defattr(-,root,root,-)
+/usr/bin/luantiserver
 /usr/bin/minetestserver
+/usr/share/luanti/builtin/async/game.lua
+/usr/share/luanti/builtin/async/mainmenu.lua
+/usr/share/luanti/builtin/client/chatcommands.lua
+/usr/share/luanti/builtin/client/init.lua
+/usr/share/luanti/builtin/client/misc.lua
+/usr/share/luanti/builtin/client/register.lua
+/usr/share/luanti/builtin/common/after.lua
+/usr/share/luanti/builtin/common/chatcommands.lua
+/usr/share/luanti/builtin/common/filterlist.lua
+/usr/share/luanti/builtin/common/information_formspecs.lua
+/usr/share/luanti/builtin/common/item_s.lua
+/usr/share/luanti/builtin/common/math.lua
+/usr/share/luanti/builtin/common/metatable.lua
+/usr/share/luanti/builtin/common/misc_helpers.lua
+/usr/share/luanti/builtin/common/mod_storage.lua
+/usr/share/luanti/builtin/common/register.lua
+/usr/share/luanti/builtin/common/serialize.lua
+/usr/share/luanti/builtin/common/strict.lua
+/usr/share/luanti/builtin/common/tests/after_spec.lua
+/usr/share/luanti/builtin/common/tests/math_spec.lua
+/usr/share/luanti/builtin/common/tests/misc_helpers_spec.lua
+/usr/share/luanti/builtin/common/tests/serialize_spec.lua
+/usr/share/luanti/builtin/common/tests/vector_spec.lua
+/usr/share/luanti/builtin/common/vector.lua
+/usr/share/luanti/builtin/emerge/env.lua
+/usr/share/luanti/builtin/emerge/init.lua
+/usr/share/luanti/builtin/emerge/register.lua
+/usr/share/luanti/builtin/fstk/buttonbar.lua
+/usr/share/luanti/builtin/fstk/dialog.lua
+/usr/share/luanti/builtin/fstk/tabview.lua
+/usr/share/luanti/builtin/fstk/ui.lua
+/usr/share/luanti/builtin/game/async.lua
+/usr/share/luanti/builtin/game/auth.lua
+/usr/share/luanti/builtin/game/chat.lua
+/usr/share/luanti/builtin/game/constants.lua
+/usr/share/luanti/builtin/game/death_screen.lua
+/usr/share/luanti/builtin/game/deprecated.lua
+/usr/share/luanti/builtin/game/detached_inventory.lua
+/usr/share/luanti/builtin/game/falling.lua
+/usr/share/luanti/builtin/game/features.lua
+/usr/share/luanti/builtin/game/forceloading.lua
+/usr/share/luanti/builtin/game/hud.lua
+/usr/share/luanti/builtin/game/init.lua
+/usr/share/luanti/builtin/game/item.lua
+/usr/share/luanti/builtin/game/item_entity.lua
+/usr/share/luanti/builtin/game/knockback.lua
+/usr/share/luanti/builtin/game/misc.lua
+/usr/share/luanti/builtin/game/misc_s.lua
+/usr/share/luanti/builtin/game/privileges.lua
+/usr/share/luanti/builtin/game/register.lua
+/usr/share/luanti/builtin/game/static_spawn.lua
+/usr/share/luanti/builtin/game/tests/test_moveaction.lua
+/usr/share/luanti/builtin/game/voxelarea.lua
+/usr/share/luanti/builtin/init.lua
+/usr/share/luanti/builtin/locale/__builtin.be.tr
+/usr/share/luanti/builtin/locale/__builtin.bg.tr
+/usr/share/luanti/builtin/locale/__builtin.ca.tr
+/usr/share/luanti/builtin/locale/__builtin.cs.tr
+/usr/share/luanti/builtin/locale/__builtin.cy.tr
+/usr/share/luanti/builtin/locale/__builtin.da.tr
+/usr/share/luanti/builtin/locale/__builtin.de.tr
+/usr/share/luanti/builtin/locale/__builtin.el.tr
+/usr/share/luanti/builtin/locale/__builtin.eo.tr
+/usr/share/luanti/builtin/locale/__builtin.es.tr
+/usr/share/luanti/builtin/locale/__builtin.et.tr
+/usr/share/luanti/builtin/locale/__builtin.eu.tr
+/usr/share/luanti/builtin/locale/__builtin.fi.tr
+/usr/share/luanti/builtin/locale/__builtin.fil.tr
+/usr/share/luanti/builtin/locale/__builtin.fr.tr
+/usr/share/luanti/builtin/locale/__builtin.ga.tr
+/usr/share/luanti/builtin/locale/__builtin.gl.tr
+/usr/share/luanti/builtin/locale/__builtin.hu.tr
+/usr/share/luanti/builtin/locale/__builtin.id.tr
+/usr/share/luanti/builtin/locale/__builtin.it.tr
+/usr/share/luanti/builtin/locale/__builtin.ja.tr
+/usr/share/luanti/builtin/locale/__builtin.jbo.tr
+/usr/share/luanti/builtin/locale/__builtin.jv.tr
+/usr/share/luanti/builtin/locale/__builtin.ko.tr
+/usr/share/luanti/builtin/locale/__builtin.kv.tr
+/usr/share/luanti/builtin/locale/__builtin.ky.tr
+/usr/share/luanti/builtin/locale/__builtin.lt.tr
+/usr/share/luanti/builtin/locale/__builtin.lv.tr
+/usr/share/luanti/builtin/locale/__builtin.lzh.tr
+/usr/share/luanti/builtin/locale/__builtin.mn.tr
+/usr/share/luanti/builtin/locale/__builtin.mr.tr
+/usr/share/luanti/builtin/locale/__builtin.ms.tr
+/usr/share/luanti/builtin/locale/__builtin.nb.tr
+/usr/share/luanti/builtin/locale/__builtin.nl.tr
+/usr/share/luanti/builtin/locale/__builtin.nn.tr
+/usr/share/luanti/builtin/locale/__builtin.oc.tr
+/usr/share/luanti/builtin/locale/__builtin.pl.tr
+/usr/share/luanti/builtin/locale/__builtin.pt.tr
+/usr/share/luanti/builtin/locale/__builtin.pt_BR.tr
+/usr/share/luanti/builtin/locale/__builtin.ro.tr
+/usr/share/luanti/builtin/locale/__builtin.ru.tr
+/usr/share/luanti/builtin/locale/__builtin.sk.tr
+/usr/share/luanti/builtin/locale/__builtin.sl.tr
+/usr/share/luanti/builtin/locale/__builtin.sr_Cyrl.tr
+/usr/share/luanti/builtin/locale/__builtin.sr_Latn.tr
+/usr/share/luanti/builtin/locale/__builtin.sv.tr
+/usr/share/luanti/builtin/locale/__builtin.sw.tr
+/usr/share/luanti/builtin/locale/__builtin.tok.tr
+/usr/share/luanti/builtin/locale/__builtin.tr.tr
+/usr/share/luanti/builtin/locale/__builtin.tt.tr
+/usr/share/luanti/builtin/locale/__builtin.uk.tr
+/usr/share/luanti/builtin/locale/__builtin.vi.tr
+/usr/share/luanti/builtin/locale/__builtin.zh_CN.tr
+/usr/share/luanti/builtin/locale/__builtin.zh_TW.tr
+/usr/share/luanti/builtin/locale/template.txt
+/usr/share/luanti/builtin/mainmenu/async_event.lua
+/usr/share/luanti/builtin/mainmenu/common.lua
+/usr/share/luanti/builtin/mainmenu/content/contentdb.lua
+/usr/share/luanti/builtin/mainmenu/content/dlg_contentdb.lua
+/usr/share/luanti/builtin/mainmenu/content/dlg_install.lua
+/usr/share/luanti/builtin/mainmenu/content/dlg_overwrite.lua
+/usr/share/luanti/builtin/mainmenu/content/dlg_package.lua
+/usr/share/luanti/builtin/mainmenu/content/init.lua
+/usr/share/luanti/builtin/mainmenu/content/pkgmgr.lua
+/usr/share/luanti/builtin/mainmenu/content/screenshots.lua
+/usr/share/luanti/builtin/mainmenu/content/tests/pkgmgr_spec.lua
+/usr/share/luanti/builtin/mainmenu/content/update_detector.lua
+/usr/share/luanti/builtin/mainmenu/credits.json
+/usr/share/luanti/builtin/mainmenu/dlg_config_world.lua
+/usr/share/luanti/builtin/mainmenu/dlg_create_world.lua
+/usr/share/luanti/builtin/mainmenu/dlg_delete_content.lua
+/usr/share/luanti/builtin/mainmenu/dlg_delete_world.lua
+/usr/share/luanti/builtin/mainmenu/dlg_register.lua
+/usr/share/luanti/builtin/mainmenu/dlg_reinstall_mtg.lua
+/usr/share/luanti/builtin/mainmenu/dlg_rename_modpack.lua
+/usr/share/luanti/builtin/mainmenu/dlg_version_info.lua
+/usr/share/luanti/builtin/mainmenu/game_theme.lua
+/usr/share/luanti/builtin/mainmenu/init.lua
+/usr/share/luanti/builtin/mainmenu/serverlistmgr.lua
+/usr/share/luanti/builtin/mainmenu/settings/components.lua
+/usr/share/luanti/builtin/mainmenu/settings/dlg_change_mapgen_flags.lua
+/usr/share/luanti/builtin/mainmenu/settings/dlg_settings.lua
+/usr/share/luanti/builtin/mainmenu/settings/generate_from_settingtypes.lua
+/usr/share/luanti/builtin/mainmenu/settings/init.lua
+/usr/share/luanti/builtin/mainmenu/settings/settingtypes.lua
+/usr/share/luanti/builtin/mainmenu/settings/shader_warning_component.lua
+/usr/share/luanti/builtin/mainmenu/settings/shadows_component.lua
+/usr/share/luanti/builtin/mainmenu/tab_about.lua
+/usr/share/luanti/builtin/mainmenu/tab_content.lua
+/usr/share/luanti/builtin/mainmenu/tab_local.lua
+/usr/share/luanti/builtin/mainmenu/tab_online.lua
+/usr/share/luanti/builtin/mainmenu/tests/favorites_wellformed.txt
+/usr/share/luanti/builtin/mainmenu/tests/serverlistmgr_spec.lua
+/usr/share/luanti/builtin/profiler/init.lua
+/usr/share/luanti/builtin/profiler/instrumentation.lua
+/usr/share/luanti/builtin/profiler/reporter.lua
+/usr/share/luanti/builtin/profiler/sampling.lua
+/usr/share/luanti/builtin/settingtypes.txt
 
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/minetest/01a6b4bf79aca9b556822601186afab86e8c4fbf
 /usr/share/package-licenses/minetest/109a1b93b80352920797150a7f7adf4cf70ef40e
 /usr/share/package-licenses/minetest/2b1b42e96714bc36f7bee9210a5e69e2586f7ee3
+/usr/share/package-licenses/minetest/31890dbe089be28ef8b919dca305c7903e7c2675
 /usr/share/package-licenses/minetest/72d36e748c1f8e0a697f46999ea796007f30b868
 /usr/share/package-licenses/minetest/a6efc4d11f332f4843bc25b557c6bf3e5ef51458
 /usr/share/package-licenses/minetest/b1b13828a3a2be603b24a38d3948c7811d85f851
